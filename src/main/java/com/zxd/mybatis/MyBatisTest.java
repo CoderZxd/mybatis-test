@@ -25,7 +25,7 @@ public class MyBatisTest
             try{
                 ResultDao resultDao = sqlSession.getMapper(ResultDao.class);
                 List<ResultDto> resultDtoList =  resultDao.getAll();
-                System.out.println();
+                System.out.println(resultDtoList.size());
             }catch (Exception e){
                 e.printStackTrace();
             }finally {

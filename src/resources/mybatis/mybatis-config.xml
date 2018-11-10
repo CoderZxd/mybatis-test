@@ -2,19 +2,53 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+        <!--MyBatis 的配置文件包含了会深深影响 MyBatis 行为的设置（settings）和属性（properties）信息。文档的顶层结构如下：-->
+
+        <!--configuration 配置-->
+        <!--properties 属性-->
+        <!--settings 设置-->
+        <!--typeAliases 类型别名-->
+        <!--typeHandlers 类型处理器-->
+        <!--objectFactory 对象工厂-->
+        <!--plugins 插件-->
+        <!--environments 环境-->
+        <!--environment 环境变量-->
+        <!--transactionManager 事务管理器-->
+        <!--dataSource 数据源-->
+        <!--databaseIdProvider 数据库厂商标识-->
+        <!--mappers 映射器-->
+
 <configuration>
-    <environments default="home">
+    <properties resource="com.zxd.mybatis.config/config.properties">
+        <property name="name1" value="value1"/>
+        <property name="name2" value="value2"/>
+        <!--为占位符指定一个默认值,使用以下配置开启该功能-->
+        <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- Enable this feature -->
+    </properties>
+    <environments default="work">
         <environment id="home">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <!--<property name="driver" value="${driver}"/>-->
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="driver" value="${jdbc.driver}"/>
                 <!--<property name="url" value="${url}"/>-->
-                <property name="url" value="jdbc:mysql://localhost:3306/standardlesson?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
+                <!--<property name="url" value="jdbc:mysql://localhost:3306/standardlesson?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>-->
+                <property name="url" value="${home.jdbc.url}"/>
                 <!--<property name="username" value="${username}"/>-->
-                <property name="username" value="root"/>
+                <property name="username" value="${home.jdbc.username:root}"/>
                 <!--<property name="password" value="${password}"/>-->
-                <property name="password" value="root"/>
+                <property name="password" value="${home.jdbc.password:root}"/>
+            </dataSource>
+        </environment>
+        <environment id="work">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--<property name="driver" value="${driver}"/>-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${work.jdbc.url}"/>
+                <property name="username" value="${work.jdbc.username:root}"/>
+                <property name="password" value="${work.jdbc.password:rootroot}"/>
             </dataSource>
         </environment>
     </environments>
