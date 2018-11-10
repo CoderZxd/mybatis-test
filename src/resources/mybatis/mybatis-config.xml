@@ -53,6 +53,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/zxd/mybatis/mapping/ResultDtoMapper.xml"/>
+        <!--<mapper resource="com/zxd/mybatis/mapping/ResultDtoMapper.xml"/>-->
+        <package name="com.zxd.mybatis.mapping"/>
     </mappers>
 </configuration>
