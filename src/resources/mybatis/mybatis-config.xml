@@ -26,6 +26,9 @@
         <!--为占位符指定一个默认值,使用以下配置开启该功能-->
         <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- Enable this feature -->
     </properties>
+    <typeAliases>
+        <typeAlias type="com.zxd.mybatis.model.ResultDto" alias="ResultDto" />
+    </typeAliases>
     <environments default="home">
         <environment id="home">
             <transactionManager type="JDBC"/>
